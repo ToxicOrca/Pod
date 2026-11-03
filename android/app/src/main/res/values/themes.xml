@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Pod is dark-only. There is intentionally no light theme and no values-night variant. -->
+    <style name="Theme.Pod" parent="android:Theme.Material.NoActionBar">
+        <item name="android:windowBackground">@color/pod_bg</item>
+        <item name="android:colorBackground">@color/pod_bg</item>
+        <item name="android:colorPrimary">@color/pod_accent</item>
+        <item name="android:colorAccent">@color/pod_accent</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:navigationBarColor">@color/pod_bg</item>
+        <item name="android:windowLightStatusBar">false</item>
+    </style>
+</resources>

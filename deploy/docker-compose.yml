@@ -1,0 +1,60 @@
+# Pod Family Location - server stack
+#
+#   cp .env.example .env    # then fill in the values
+#   ./setup-map.sh          # one-time: download the self-hosted map
+#   docker compose up -d --build
+#
+# Nothing is published on the host. The only way in is the Cloudflare Tunnel.
+
+services:
+  pod-server:
+    build:
+      context: ../server
+      args:
+        VERSION: "0.3.0"   # server version shown by /healthz; bump when the server changes
+    image: pod-family-location/server:0.3.0
+    container_name: pod-server
+    restart: unless-stopped
+    env_file: .env
+    environment:
+      POD_LISTEN: ":8080"
+      POD_DB: /data/pod.db
+      POD_MAP_DIR: /map
+      POD_APP_DIR: /app
+      # Behind the Cloudflare Tunnel, Cloudflare's header carries the real client IP (for rate limits).
+      POD_TRUST_CF_IP: "true"
+    volumes:
+      - pod-data:/data
+      - ./map:/map:ro
+      - ./app:/app:ro
+    read_only: true
+    cap_drop: [ALL]
+    security_opt: ["no-new-privileges:true"]
+    networks: [pod]
+    logging:
+      driver: json-file
+      options: { max-size: "10m", max-file: "3" }
+
+  cloudflared:
+    image: cloudflare/cloudflared:2026.10.1
+    container_name: pod-cloudflared
+    restart: unless-stopped
+    command: tunnel --no-autoupdate run
+    environment:
+      TUNNEL_TOKEN: ${CLOUDFLARE_TUNNEL_TOKEN:?set CLOUDFLARE_TUNNEL_TOKEN in .env}
+    depends_on:
+      pod-server:
+        condition: service_healthy
+    read_only: true
+    cap_drop: [ALL]
+    security_opt: ["no-new-privileges:true"]
+    networks: [pod]
+    logging:
+      driver: json-file
+      options: { max-size: "10m", max-file: "3" }
+
+volumes:
+  pod-data:
+
+networks:
+  pod:

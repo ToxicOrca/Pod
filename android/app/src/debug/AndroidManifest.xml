@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Debug builds only: the screenshot demo (see DemoActivity) and plain-http access to a
+     server on the development machine. Never part of a release build. -->
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+    <application android:networkSecurityConfig="@xml/debug_network_security">
+        <activity
+            android:name=".DemoActivity"
+            android:exported="true"
+            android:theme="@style/Theme.Pod" />
+    </application>
+</manifest>

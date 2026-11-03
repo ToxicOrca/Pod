@@ -1,0 +1,35 @@
+# Server
+deploy/.env
+deploy/map/fonts/
+deploy/map/sprites/
+deploy/map/*.pmtiles
+deploy/map/*.pmtiles.new
+*.db
+*.db-shm
+*.db-wal
+
+# Android
+android/.gradle/
+android/build/
+android/app/build/
+android/local.properties
+android/.idea/
+android/*.iml
+android/app/release/
+*.jks
+*.keystore
+keystore.properties
+tools/publish.config.ps1
+CLAUDE.local.md
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+*.apk
+
+# App releases (published to the server, not git)
+deploy/app/*.apk
+deploy/app/latest.json

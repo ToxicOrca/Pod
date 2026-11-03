@@ -1,0 +1,10 @@
+# Keep Unix line endings for files that run on Linux (servers, CI), even when committed from Windows.
+* text=auto
+*.sh text eol=lf
+android/gradlew text eol=lf
+*.go text eol=lf
+*.yml text eol=lf
+Dockerfile text eol=lf
+*.bat text eol=crlf
+*.jar binary
+*.png binary

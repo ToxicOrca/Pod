@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="pod_bg">#FF0E1013</color>
+    <color name="pod_surface">#FF171A1F</color>
+    <color name="pod_accent">#FF5EC8F2</color>
+    <color name="pod_icon_bg">#FF0B2A3A</color>
+</resources>
