@@ -2,7 +2,8 @@
 
 The Pod app checks `https://<your server>/app/latest.json` and offers family
 members a one-tap update. This folder holds that file and the signed APK.
-Publish a release with `tools/publish-release.ps1` from your PC; don't edit by hand.
+Publish a release with `tools/publish-release.ps1` (Windows), or by hand as described
+under "Publishing updates" in the main README. Copy the APK first and `latest.json` last.
 
 `latest.json`:
 
